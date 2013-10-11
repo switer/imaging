@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="thumb.js"></script>
+</head>
+<body>
+    <img src="./images/3.jpg" alt="" id='image'>
+    <script>
+        var img = document.querySelector('#image');
+        img.onload = function() {
+            var canvas = document.createElement("canvas");
+            canvas.id = 'canvas';
+            new Thumb(canvas, img, 40, 3, function (imgData) {
+                // console.log(imgData);
+                console.log('canvas:loaded:' + canvas.height);
+            });
+            document.body.appendChild(canvas);
+        }
+    </script>
+</body>
+</html>

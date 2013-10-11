@@ -1,0 +1,27 @@
+{
+  "name": "imaging",
+  "version": "0.0.0",
+  "description": "Drawing image in your terminal whithout node-canvas",
+  "main": "img.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/switer/imaging.git"
+  },
+  "keywords": [
+    "image",
+    "terminal",
+    "nodejs"
+  ],
+  "author": "switer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/switer/imaging/issues"
+  },
+  "devDependencies": {
+    "colors": "~0.6.2",
+    "imagemagick": "~0.1.3"
+  }
+}
