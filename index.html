@@ -6,18 +6,41 @@
     <script src="thumb.js"></script>
 </head>
 <body>
-    <img src="./images/3.jpg" alt="" id='image'>
+    <img src="" alt="" id='image'>
     <script>
-        var img = document.querySelector('#image');
-        img.onload = function() {
-            var canvas = document.createElement("canvas");
-            canvas.id = 'canvas';
-            new Thumb(canvas, img, 40, 3, function (imgData) {
-                // console.log(imgData);
-                console.log('canvas:loaded:' + canvas.height);
-            });
-            document.body.appendChild(canvas);
-        }
+        (function () {
+
+            function urlParse () {
+                var search = location.search.replace('?', ''),
+                    frags = search.split('&'),
+                    args = {};
+
+                for (var i=0;i<frags.length;i++) {
+                    var item = frags[i],
+                        argStrs = item.split('=');
+                    args[argStrs[0]] = argStrs[1];
+                }
+                return args;
+            }
+            var img = document.querySelector('#image'),
+                args = urlParse(),
+                width = args.width ? parseInt(args.width):40,
+                raidus = args.raidus ? parseInt(args.raidus):3;
+
+            img.src = args.src || './images/4.png';
+
+            img.onload = function() {
+                var canvas = document.createElement("canvas");
+                canvas.id = 'canvas';
+                new Thumb(canvas, img, width, raidus, function (imgData) {
+                    console.log(imgData)
+                    console.log('canvas:loaded:' + canvas.height);
+                });
+                document.body.appendChild(canvas);
+            }
+
+
+        })();
     </script>
 </body>
 </html>
