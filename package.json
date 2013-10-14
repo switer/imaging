@@ -1,11 +1,11 @@
 {
   "name": "imaging",
   "version": "0.0.1",
-  "description": "Drawing image in your terminal whithout node-canvas",
+  "description": "Draw image into terminal ,whithout node-canvas.Let your command-line terminal not only have characters",
   "bin": {
     "imaging": "bin/imaging"
   },
-  "main": "img.js",
+  "main": "imaging.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
