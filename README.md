@@ -19,6 +19,9 @@ sudo npm install imaging -g
 
 ## Usage
 
+
+### Command line:
+
 ```bash
 imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
@@ -31,6 +34,25 @@ sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
 Specifies the `width` of the image：
 ```bash
 sudo imaging https://www.google.com.hk/images/srpr/logo11w.png -w 20
+```
+
+### Nodejs module
+
+```javascript
+var imaging = require('imaging');
+imaging.draw('1.jpg', function (resp) {
+    /*
+      resp is the image charater string.
+      conols.log(resp) to render the image in your terminal
+    */
+    console.log(resp);
+});
+```
+
+## API
+
+```javascript
+imaging.draw(path, [options], callback) //path could be a remote link or local resource
 ```
 
 
