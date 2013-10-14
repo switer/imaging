@@ -30,7 +30,7 @@ sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
 
 Specifies the width of the image：
 ```bash
-sudo imaging https://www.google.com.hk/images/srpr/logo11w.png -w 100
+sudo imaging https://www.google.com.hk/images/srpr/logo11w.png -w 20
 ```
 
 
