@@ -28,7 +28,7 @@ Use in mac/linux sometime need `sudo`:
 sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
 
-Specifies the width of the image：
+Specifies the `width` of the image：
 ```bash
 sudo imaging https://www.google.com.hk/images/srpr/logo11w.png -w 20
 ```
