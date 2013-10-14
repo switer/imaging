@@ -23,6 +23,10 @@ sudo npm install imaging -g
 imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
 
+Use in mac/linux sometime need `sudo`:
+```bash
+sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
+```
 ## Example
 
 __Source image:__
