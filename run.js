@@ -132,5 +132,5 @@ page.onConsoleMessage = function(msg) {
 };
 page.settings["localToRemoteUrlAccessEnabled"]  = true;
 page.open(relativePath + 'res/index.html?width=' + params.width + '&src=' + params.img, function (status) {
-    if (status === 'fail') console.log('Runing index.html error !');
+    if (status === 'fail') console.log('Running error, load index.html fail !');
 });

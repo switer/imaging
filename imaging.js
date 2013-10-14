@@ -28,9 +28,15 @@ function _run (imgUri, options, callback) {
     childArgs.push(encodeURIComponent(__dirname));
     childArgs.push('./');
     childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
-        if (err) console.log(err);
-        // else console.log(stdout);
-        callback && callback(stdout);
+        if (err) {
+            console.log(err);
+            callback && callback(err, 'fail')
+        }
+        if ( !stdout || stdout.match(/^Running\ error/)) {
+            callback && callback (stdout || 'error', 'fail');
+        } else {
+            callback && callback(stdout, 'success');
+        }
     })
 }
 
@@ -41,13 +47,6 @@ exports.draw = function (/*src, [options], callback*/) {
         options = {},
         callback = null;
 
-    var imgUri = src;
-    if (!imgUri) {
-        console.log('Please give a correct image url !'.red)
-        return;
-    } else {
-        imgUri = _fixedImageUrl(imgUri);
-    }
     var param2 = args[1];
 
     if (typeof(param2) == 'function') {
@@ -57,6 +56,13 @@ exports.draw = function (/*src, [options], callback*/) {
     }
     if (!callback) callback = args[2];
 
+    var imgUri = src;
+    if (!imgUri) {
+        callback && callback('Running error, Please give a correct image url !', fail)
+        return;
+    } else {
+        imgUri = _fixedImageUrl(imgUri);
+    }
     _run(imgUri, options, callback);
 }
 
