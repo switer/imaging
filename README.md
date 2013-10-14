@@ -6,8 +6,15 @@ Drawing image in your terminal whithout node-canvas
 ## Installing
 
 For [node](http://nodejs.org) with [npm](http://npmjs.org):
+
+__windows__
 ```bash
 npm install imaging -g
+```
+__Mac/Linux__
+
+```bash
+sudo npm install imaging -g
 ```
 
 ## Usage
