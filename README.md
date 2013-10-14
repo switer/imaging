@@ -48,8 +48,8 @@ imaging.draw('1.jpg', function (resp) {
     console.log(resp);
 });
 
-// limit the width of the rendering image
-imaging.draw('1.jpg', function (resp) {
+// limit the width for rendering
+imaging.draw('1.jpg', { width: 50}, function (resp) {
     /*
       resp is the image charater string.
       conols.log(resp) to render the image in your terminal
