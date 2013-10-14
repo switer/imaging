@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+var childProcess = require('child_process'),
+    phantomjs = require('phantomjs'),
+    program = require('commander'),
+    colors = require('colors'),
+    defaultWidth = 40,
+    binPath = phantomjs.path;
+
+program
+    .version('0.0.1')
+    .usage('<path> [options]')
+    .option('-w, --width <width>', 'set the width to render the image in terminal');
+
+program.parse(process.argv);
+ // program
+ //   .command('node')
+ //   .description('run remote setup commands')
+ //   .action(function(){
+ //     console.log('setup');
+ //   });
+var imgUri = process.argv[2];
+
+function fixedImageUrl(url) {
+    if (url.match(/http[s]*\:\/\//)) return url;
+    else if (url.match(/[a-zA-Z]\:/) || url.match(/^\//)) return url;
+    else return process.cwd().replace('/$','') + '/' + url;
+}
+
+if (!imgUri) {
+    console.log('Please get a correct image url !'.red)
+    return;
+} else {
+    imgUri = fixedImageUrl(imgUri);
+}
+
+var childArgs = [
+  __dirname + '/../run.js',
+  encodeURIComponent(imgUri),
+]
+if (program.width) {
+  childArgs.push(program.width);
+} else {
+  childArgs.push(defaultWidth);
+}
+childArgs.push(encodeURIComponent(__dirname));
+
+childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
+// childProcess.exec('phantomjs ' + childArgs.join(' '), function(err, stdout, stderr) {
+  if (err) console.log(err);
+  else console.log(stdout);
+  console.log(stderr);
+})

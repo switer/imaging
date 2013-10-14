@@ -2,18 +2,24 @@
     ▁▂▃▄▅▆▇█▉▊▋▌▍▎▏■●◆
 */
 'use strict';
+
+var args = require('system').args,
+    fs = require('fs'),
+    cwd = fs.workingDirectory;
+
+var dirname = decodeURIComponent(args[3]);
+fs.changeWorkingDirectory(dirname);
+
 var page = require('webpage').create(),
-    color = require('./node_modules/colors/colors.js'),
+    color = require(dirname.replace(/\/$/) + '/../node_modules/colors/colors.js'),
     pix = '▇',
     // pix = '●',
     // pix = 'o',
     // pix = '█',
-    
-    width = 90;
-
-page.settings["localToRemoteUrlAccessEnabled"]  = true;
+    width = 40;
 
 var colorMap = {
+    /*normal*/
     '0,0,0': 'black', 
     '0,0,128': 'blue', 
     '0,128,0': 'green', 
@@ -22,7 +28,7 @@ var colorMap = {
     '128,0,128': 'magenta', 
     '128,128,0': 'yellow', 
     '128,128,128': 'grey',
-    /**/
+    /*light*/
     '0,0,255': ['blue','grey'], 
     '0,255,0': ['green','grey'], 
     '0,255,255': ['cyan','grey'], 
@@ -30,7 +36,7 @@ var colorMap = {
     '255,0,255': ['magenta','grey'], 
     '255,255,0': ['yellow','grey'], 
     '255,255,255': ['white','grey'],
-    /**/
+    /*likes*/
     '128,128,255': ['blue','grey'],
     '128,0,255': ['blue','grey'], 
     '0,128,255': ['blue','grey'],
@@ -45,7 +51,17 @@ var colorMap = {
     '255,255,128': ['yellow','grey']
 }
 
+var params = argsParse(args);
+
+function argsParse (args) {
+    width = args[2];
+    return {
+        img: args[1],
+        width: args[2]
+    }
+}
 function canvasProcess (height) {
+
     var pixData = page.evaluate(function (height, width) {
         var canvas = document.querySelector('#canvas');
         return canvas.getContext('2d').getImageData(0,0,width,height);
@@ -75,11 +91,6 @@ function canvasProcess (height) {
     });
     return pixData;
 }
-function pluse (value) {
-    if (value == 0) return 128;
-    else if (value == 128) return 255;
-    return 255;
-}
 function draw (colors, callback) {
     var line = '';
     for (var i =0; i < colors.length; i ++) {
@@ -105,7 +116,6 @@ function transColor (value, alpha) {
 }
 function rgba2rbg (value, alpha) {
     return ((1 - alpha)*255 + alpha*value);
-    // return value;
 }
 page.onConsoleMessage = function(msg) {
     if (msg.match(/^canvas\:loaded/)) {
@@ -119,16 +129,7 @@ page.onConsoleMessage = function(msg) {
         }
     }
 };
-page.open('test/demo.html', function (status) {
-    page.evaluate(function (width) {
-        // var img = document.querySelector('#image');
-        // img.onload = function() {
-        //     var canvas = document.createElement("canvas");
-        //     canvas.id = 'canvas';
-        //     new Thumb(canvas, img, width, 3, function (imgData) {
-        //         console.log('canvas:loaded:' + canvas.height);
-        //     });
-        //     document.body.appendChild(canvas);
-        // }
-    }, width);
+page.settings["localToRemoteUrlAccessEnabled"]  = true;
+page.open('../res/index.html?width=' + params.width + '&src=' + params.img, function (status) {
+    if (status === 'fail') console.log('Runing index.html error !');
 });

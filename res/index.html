@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+     <img src="" alt="" id="image">
+    <script>
+        function urlParse () {
+            var search = location.search.replace('?', ''),
+                frags = search.split('&'),
+                args = {};
+
+            for (var i=0;i<frags.length;i++) {
+                var item = frags[i],
+                    argStrs = item.split('=');
+                args[argStrs[0]] = argStrs[1];
+            }
+            return args;
+        }
+        var img = document.querySelector('#image'),
+            canvas = document.createElement('canvas'),
+            args = urlParse(),
+            width = args.width ? parseInt(args.width):40,
+            src = decodeURIComponent(args.src) ,
+            height;
+
+        img.src = src;
+        canvas.id = 'canvas';
+        canvas.width = width;
+
+        img.onload = function  (argument) {
+            img.width = width;
+            height = img.height;
+            canvas.height = height;
+
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(img,0,0,width,height);
+
+            document.body.appendChild(canvas);
+            console.log('canvas:loaded:' + height);
+        }
+        img.onerror = function () {
+            console.log('canvas:loaded:error');
+        }
+    </script>
+</body>
+</html>
