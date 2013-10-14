@@ -64,7 +64,7 @@ imaging.draw('1.jpg', { width: 50}, function (resp) {
 imaging.draw(path, [options], callback) //path could be a remote link or local resource
 ```
 __options:__
-* 
+* `width` -  limit the width for rendering 
 
 
 ## Example
