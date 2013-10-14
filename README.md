@@ -40,21 +40,24 @@ imaging https://www.google.com.hk/images/srpr/logo11w.png -w 20
 
 ```javascript
 var imaging = require('imaging');
-imaging.draw('1.jpg', function (resp) {
+imaging.draw('1.jpg', function (resp, status) {
     /*
-      resp is the image charater string.
+      if status == 'success', resp is the image charater string.
       conols.log(resp) to render the image in your terminal
+      else if if status == 'fail', resp is the error message
     */
+    console.log(status);
     console.log(resp);
 });
 
 // limit the width for rendering
-imaging.draw('1.jpg', { width: 50}, function (resp) {
+imaging.draw('1.jpg', { width: 50}, function (resp, status) {
     /*
-      resp is the image charater string.
+      if status == 'success', resp is the image charater string.
       conols.log(resp) to render the image in your terminal
+      else if if status == 'fail', resp is the error message
     */
-    console.log(resp);
+    (status == 'success') && console.log(resp);
 });
 ```
 
