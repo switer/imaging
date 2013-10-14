@@ -63,6 +63,8 @@ imaging.draw('1.jpg', { width: 50}, function (resp) {
 ```javascript
 imaging.draw(path, [options], callback) //path could be a remote link or local resource
 ```
+__options:__
+* 
 
 
 ## Example
