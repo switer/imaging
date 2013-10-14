@@ -27,7 +27,7 @@ function fixedImageUrl(url) {
 }
 
 if (!imgUri) {
-    console.log('Please get a correct image url !'.red)
+    console.log('Please give a correct image url !'.red)
     return;
 } else {
     imgUri = fixedImageUrl(imgUri);
@@ -35,7 +35,7 @@ if (!imgUri) {
 
 var childArgs = [
   __dirname + '/../run.js',
-  encodeURIComponent(imgUri),
+  encodeURIComponent(imgUri)
 ]
 if (program.width) {
   childArgs.push(program.width);
@@ -43,10 +43,8 @@ if (program.width) {
   childArgs.push(defaultWidth);
 }
 childArgs.push(encodeURIComponent(__dirname));
-
+childArgs.push('../');
 childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
-// childProcess.exec('phantomjs ' + childArgs.join(' '), function(err, stdout, stderr) {
   if (err) console.log(err);
   else console.log(stdout);
-  console.log(stderr);
 })

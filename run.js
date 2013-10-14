@@ -7,11 +7,13 @@ var args = require('system').args,
     fs = require('fs'),
     cwd = fs.workingDirectory;
 
-var dirname = decodeURIComponent(args[3]);
+var dirname = decodeURIComponent(args[3]),
+    relativePath = args[4];
+
 fs.changeWorkingDirectory(dirname);
 
 var page = require('webpage').create(),
-    color = require(dirname.replace(/\/$/) + '/../node_modules/colors/colors.js'),
+    color = require(dirname.replace(/\/$/) + '/' + relativePath +  '/node_modules/colors/colors.js'),
     pix = '▇',
     // pix = '●',
     // pix = 'o',
@@ -52,7 +54,6 @@ var colorMap = {
 }
 
 var params = argsParse(args);
-
 function argsParse (args) {
     width = args[2];
     return {
@@ -87,7 +88,7 @@ function canvasProcess (height) {
     draw(colors, function () {
         setTimeout(function () {
             phantom.exit();
-        }, 750);
+        }, 500);
     });
     return pixData;
 }
@@ -130,6 +131,6 @@ page.onConsoleMessage = function(msg) {
     }
 };
 page.settings["localToRemoteUrlAccessEnabled"]  = true;
-page.open('../res/index.html?width=' + params.width + '&src=' + params.img, function (status) {
+page.open(relativePath + 'res/index.html?width=' + params.width + '&src=' + params.img, function (status) {
     if (status === 'fail') console.log('Runing index.html error !');
 });
