@@ -27,6 +27,13 @@ Use in mac/linux sometime need `sudo`:
 ```bash
 sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
+
+Specifies the width of the image：
+```bash
+sudo imaging https://www.google.com.hk/images/srpr/logo11w.png -w 100
+```
+
+
 ## Example
 
 __Source image:__
