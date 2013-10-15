@@ -70,9 +70,12 @@ imaging.draw('1.jpg', { width: 50}, function (resp, status) {
 ```javascript
 imaging.draw(path, [options], callback) //path could be a remote link or local resource
 ```
-__options:__
+__options:__ `object`
 * `width` -  the width of image for rendering 
 
+__callback:__ `function (resp, status)`
+* `status == "fail"` - resp: error msg
+* `status == "success"` - resp:imaging string in color format
 
 ## Example
 
