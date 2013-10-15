@@ -1,7 +1,9 @@
 imaging
 =======
 
-Drawing image in your terminal whithout node-canvas
+Drawing image in your terminal whithout node-canvas,and the outputing image is more clear than using `picture-tube`.
+
+__Imaging__, let your  terminal outputs more interesting.
 
 ## Installing
 
