@@ -5,6 +5,8 @@ Drawing image in your terminal whithout node-canvas,and the outputing image is m
 
 __Imaging__, let your  terminal outputs more interesting.
 
+![imaing](https://raw.github.com/switer/live/gh-pages/imaging.png)
+
 ## Installing
 
 For [node](http://nodejs.org) with [npm](http://npmjs.org):
