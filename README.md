@@ -35,9 +35,29 @@ Use in mac/linux sometime need `sudo`:
 sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
 
-Specifies the `width` of the image：
+__options__
+
+Set image `width`：
 ```bash
-imaging https://www.google.com.hk/images/srpr/logo11w.png -w 20
+imaging 1.png -w 20
+## or
+imaging 1.png --width 20
+```
+
+Set offset `left`：
+```bash
+imaging 1.png -l 20
+## or
+imaging 1.png --left 20
+```
+
+Set pixel `char`：
+```bash
+imaging 1.png -c @
+## or
+imaging 1.png --char #
+## if error please wrap in ""
+imaging 1.png -c "*"
 ```
 
 ### Nodejs module
