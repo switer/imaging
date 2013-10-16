@@ -71,7 +71,9 @@ imaging.draw('1.jpg', { width: 50}, function (resp, status) {
 imaging.draw(path, [options], callback) //path could be a remote link or local resource
 ```
 __options:__ `object`
-* `width` -  the width of image for rendering 
+* `width` -  the width of image for rendering
+* `left` - set the left offset of image
+* `char` - set the char as pixel of rendered image
 
 __callback:__ `function (resp, status)`
 * `status == "fail"` - resp: error msg
