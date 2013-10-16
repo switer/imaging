@@ -3,12 +3,14 @@ var childProcess = require('child_process'),
     phantomjs = require('phantomjs'),
     program = require('commander'),
     colors = require('colors'),
-    defaultWidth = 40,
+    config = require('../config.js'),
     binPath = phantomjs.path;
 
 program
     .version('0.0.1')
     .usage('<path> [options]')
+    .option('-c, --char <charater>', 'set the char as the pixels of image')
+    .option('-l, --left <left>', 'set the left position of image')
     .option('-w, --width <width>', 'set the width to render the image in terminal');
 
 program.parse(process.argv);
@@ -34,16 +36,33 @@ if (!imgUri) {
 }
 
 var childArgs = [
-  __dirname + '/../run.js',
-  encodeURIComponent(imgUri)
-]
+      __dirname + '/../run.js',
+      encodeURIComponent(imgUri)
+    ],
+    optParams = {};
+
 if (program.width) {
-  childArgs.push(program.width);
+  optParams.width = program.width;
 } else {
-  childArgs.push(defaultWidth);
+  optParams.width = config.defaultWidth;
 }
+
+if (program.char) {
+    optParams.char = program.char;
+} else {
+    optParams.char = config.char.default;
+}
+
+if (program.left) {
+    optParams.left = program.left;
+} else {
+    optParams.left = config.defaultLeft;
+}
+
+childArgs.push(JSON.stringify(optParams));
 childArgs.push(encodeURIComponent(__dirname));
 childArgs.push('../');
+
 childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
   if (err) console.log(err);
   else console.log(stdout);

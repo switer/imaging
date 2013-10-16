@@ -14,11 +14,11 @@ fs.changeWorkingDirectory(dirname);
 
 var page = require('webpage').create(),
     color = require(dirname.replace(/\/$/) + '/' + relativePath +  '/node_modules/colors/colors.js'),
+    config = require(dirname.replace(/\/$/) + '/' + relativePath +  '/config.js'),
     pix = '▇',
-    // pix = '●',
-    // pix = 'o',
-    // pix = '█',
-    width = 40;
+    width = 40,
+    options = {};
+
 
 var colorMap = {
     /*normal*/
@@ -55,10 +55,20 @@ var colorMap = {
 
 var params = argsParse(args);
 function argsParse (args) {
-    width = args[2];
+    options = JSON.parse(args[2]);
+
+    var charType = options.char;
+
+    width = options.width;
+
+    if (config.char[charType]) pix = config.char[charType];
+    else if (charType.length === 1) pix = charType;
+    else pix = config.char.default;
+
     return {
         img: args[1],
-        width: args[2]
+        width: width,
+        left: parseInt(options.left)
     }
 }
 function canvasProcess (height) {
@@ -88,13 +98,23 @@ function canvasProcess (height) {
     draw(colors, function () {
         setTimeout(function () {
             phantom.exit();
-        }, 500);
+        }, 50);
     });
     return pixData;
 }
+function repeat (str, times) {
+    var index = 0,
+        ctn = '';
+    while(index < times) {
+        ctn += str;
+        index ++;
+    }
+    return ctn;
+}
 function draw (colors, callback) {
-    var line = '';
+    var line = repeat(' ', params.left);
     for (var i =0; i < colors.length; i ++) {
+        
         if (i % width !== 0) {
             if (typeof(colors[i]) === 'string') {
                 line += pix[colors[i]];
@@ -103,7 +123,7 @@ function draw (colors, callback) {
             }
         } else {
             console.log(line);
-            line = '';
+            line = repeat(' ', params.left);
         }
     }
     callback && callback();

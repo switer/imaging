@@ -1,7 +1,4 @@
-var imaging = require('imaging');
-imaging.draw('images/1.jpg', function (resp) {
-    console.log(resp);
-});
-imaging.draw('images/1.jpg', {width:50}, function (resp) {
+var imaging = require('../imaging.js');
+imaging.draw('../res/image/1.png' , {width:40, char: 'M', left: 20}, function (resp) {
     console.log(resp);
 });
