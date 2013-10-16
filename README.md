@@ -81,9 +81,9 @@ __callback:__ `function (resp, status)`
 
 __Source image:__
 
-![source](http://switer.github.io/live/imaging_img.png)
+![source imh](http://switer.github.io/live/imaging_img.png)
 
 __Draw into terminal:__
 
-![imaging](http://switer.github.io/live/imaging_render.png)
+![imaging render](http://switer.github.io/live/imaging_render.png)
 
