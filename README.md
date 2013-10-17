@@ -58,7 +58,7 @@ custom pixel `char`：
 imaging 1.png -c @
 ## or
 imaging 1.png --char #
-## if error please wrap in ""
+## if error or don't take effect, try wrapping the char with ""
 imaging 1.png -c "*"
 ```
 
