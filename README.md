@@ -53,7 +53,7 @@ imaging 1.png --left 20
 
 ![imaing left](https://raw.github.com/switer/live/gh-pages/images/2.PNG)
 
-Set pixel `char`：
+custom pixel `char`：
 ```bash
 imaging 1.png -c @
 ## or
