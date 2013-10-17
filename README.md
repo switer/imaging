@@ -61,6 +61,15 @@ imaging 1.png --char #
 ## if error please wrap in ""
 imaging 1.png -c "*"
 ```
+
+imaging char names:
+* square "▇"
+* circle "●"
+* rectangle" "█"
+
+`imaging 1.png -c square` equal `imaging 1.png -c ▇`
+
+
 ![imaing left](https://raw.github.com/switer/live/gh-pages/images/1.PNG)
 
 ### Nodejs module
