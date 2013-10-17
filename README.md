@@ -51,6 +51,8 @@ imaging 1.png -l 20
 imaging 1.png --left 20
 ```
 
+![imaing left](https://raw.github.com/switer/live/gh-pages/images/2.PNG)
+
 Set pixel `char`：
 ```bash
 imaging 1.png -c @
@@ -59,6 +61,7 @@ imaging 1.png --char #
 ## if error please wrap in ""
 imaging 1.png -c "*"
 ```
+![imaing left](https://raw.github.com/switer/live/gh-pages/images/1.PNG)
 
 ### Nodejs module
 
