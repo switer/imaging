@@ -31,7 +31,7 @@ var colorMap = {
     '128,128,0': 'yellow', 
     '128,128,128': 'grey',
     /*light*/
-    '0,0,255': ['blue','grey'], 
+    '0,0,255': ['blue','grey'],
     '0,255,0': ['green','grey'], 
     '0,255,255': ['cyan','grey'], 
     '255,0,0': ['red','grey'], 
@@ -110,6 +110,13 @@ function repeat (str, times) {
         index ++;
     }
     return ctn;
+}
+function colorProcess (colors) {
+    var red = colors.shift(),
+        green = colors.shift(),
+        blue = colors.shift();
+
+    
 }
 function draw (colors, callback) {
     var line = repeat(' ', params.left);
