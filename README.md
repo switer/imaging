@@ -35,10 +35,42 @@ Use in mac/linux sometime need `sudo`:
 sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
 
-Specifies the `width` of the image：
+__options__
+
+Set image `width`：
 ```bash
-imaging https://www.google.com.hk/images/srpr/logo11w.png -w 20
+imaging 1.png -w 20
+## or
+imaging 1.png --width 20
 ```
+
+Set offset `left`：
+```bash
+imaging 1.png -l 20
+## or
+imaging 1.png --left 20
+```
+
+![imaing left](https://raw.github.com/switer/live/gh-pages/images/2.PNG)
+
+custom pixel `char`：
+```bash
+imaging 1.png -c @
+## or
+imaging 1.png --char #
+## if error or don't take effect, try wrapping the char with ""
+imaging 1.png -c "*"
+```
+
+imaging char names:
+* square "▇"
+* circle "●"
+* rectangle" "█"
+
+`imaging 1.png -c square` equal `imaging 1.png -c ▇`
+
+
+![imaing left](https://raw.github.com/switer/live/gh-pages/images/1.PNG)
 
 ### Nodejs module
 
@@ -71,7 +103,9 @@ imaging.draw('1.jpg', { width: 50}, function (resp, status) {
 imaging.draw(path, [options], callback) //path could be a remote link or local resource
 ```
 __options:__ `object`
-* `width` -  the width of image for rendering 
+* `width` -  the width of image for rendering
+* `left` - set the left offset of image
+* `char` - set the char as pixel of rendered image
 
 __callback:__ `function (resp, status)`
 * `status == "fail"` - resp: error msg
