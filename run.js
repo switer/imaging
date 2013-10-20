@@ -30,6 +30,7 @@ var colorMap = {
     '128,0,128': 'magenta', 
     '128,128,0': 'yellow', 
     '128,128,128': 'grey',
+    '192,192,192': 'white',
     /*light*/
     '0,0,255': ['blue','grey'],
     '0,255,0': ['green','grey'], 
@@ -59,7 +60,7 @@ function argsParse (args) {
 
     var charType = options.char;
 
-    width = options.width;
+    width = parseInt(options.width);
 
     if (config.char[charType]) pix = config.char[charType];
     else if (charType.length === 1) pix = charType;
@@ -87,11 +88,19 @@ function canvasProcess (height) {
     for (var i =0, index = 0; i < len; i ++, index += 4) {
 
         var alpha = imgData[index+3]/255,
+            oralR = imgData[index],
+            oralG = imgData[index+1],
+            oralB = imgData[index+2],
             red = transColor(imgData[index], alpha),
             green = transColor(imgData[index+1], alpha),
             blue = transColor(imgData[index+2], alpha);
 
-        colorKey = [red,green,blue].join(',');
+        var whiteKey = specifyWhite(rgba2rbg(oralR, alpha), rgba2rbg(oralG, alpha), rgba2rbg(oralB, alpha));
+        if (whiteKey) {
+            colorKey = whiteKey;
+        } else {
+            colorKey = [red,green,blue].join(',');
+        }
 
         colors.push(colorMap[colorKey]);
     }
@@ -101,6 +110,17 @@ function canvasProcess (height) {
         }, 50);
     });
     return pixData;
+}
+function nearby (value, min, max) {
+    return (value > min && value <= max)
+}
+function specifyWhite (red, green, blue) {
+    var min = 170, max = 230;
+    if (nearby(red, min, max) && nearby(green, min, max) && nearby(blue, min, max)) {
+        return '192,192,192';
+    } else {
+        return null;
+    }
 }
 function repeat (str, times) {
     var index = 0,
