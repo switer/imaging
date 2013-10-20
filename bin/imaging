@@ -7,7 +7,7 @@ var childProcess = require('child_process'),
     binPath = phantomjs.path;
 
 program
-    .version('0.0.1')
+    .version('0.0.2')
     .usage('<path> [options]')
     .option('-c, --char <charater>', 'set the char as the pixels of image')
     .option('-l, --left <left>', 'set the left position of image')
