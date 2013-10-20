@@ -4,29 +4,41 @@ var childProcess = require('child_process'),
     program = require('commander'),
     colors = require('colors'),
     binPath = phantomjs.path,
-    config = {
-        defaultWidth : 40
-    };
+    config = require('./config.js');
 
 function _fixedImageUrl(url) {
     if (url.match(/http[s]*\:\/\//)) return url;
     else if (url.match(/[a-zA-Z]\:/) || url.match(/^\//)) return url;
     else return process.cwd().replace('/$','') + '/' + url;
 }
-
 function _run (imgUri, options, callback) {
+    var optParams = {};
+
     var childArgs = [
       __dirname + '/run.js',
       encodeURIComponent(imgUri)
     ]
 
     if (options.width) {
-      childArgs.push(options.width);
+        optParams.width = options.width;
     } else {
-      childArgs.push(config.defaultWidth);
+        optParams.width = config.defaultWidth;
     }
+    if (options.char) {
+        optParams.char = options.char;
+    } else {
+        optParams.char = config.char.default;
+    }
+    if (options.left) {
+        optParams.left = options.left;
+    } else {
+        optParams.left = config.defaultLeft;
+    }
+    
+    childArgs.push(JSON.stringify(optParams));
     childArgs.push(encodeURIComponent(__dirname));
     childArgs.push('./');
+
     childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
         if (err) {
             console.log(err);
