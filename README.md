@@ -121,3 +121,7 @@ __Draw into terminal:__
 
 ![imaging render](http://switer.github.io/live/imaging_render.png)
 
+
+## Support
+
+Now, it dosn't support rendering images with batch processing.  So when you want to render multiple images, only the way to `imaging` image for each.
