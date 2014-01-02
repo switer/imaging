@@ -139,19 +139,32 @@ function colorProcess (colors) {
     
 }
 function draw (colors, callback) {
+    // var line = repeat(' ', params.left);
+    // for (var i =0; i < colors.length; i ++) {
+    //     if (i % width !== 0) {
+    //         if (typeof(colors[i]) === 'string') {
+    //             line += pix[colors[i]];
+    //         } else if (colors[i] instanceof Array) {
+    //             line += pix[colors[i][0]][colors[i][1]];
+    //         }
+    //     } else {
+    //         console.log(line);
+    //         line = repeat(' ', params.left);
+    //     }
+    // }
     var line = repeat(' ', params.left);
-    for (var i =0; i < colors.length; i ++) {
-        
-        if (i % width !== 0) {
-            if (typeof(colors[i]) === 'string') {
-                line += pix[colors[i]];
-            } else if (colors[i] instanceof Array) {
-                line += pix[colors[i][0]][colors[i][1]];
-            }
-        } else {
+    for (var i = 0; i < colors.length; i++) {
+
+        if (i !==0 && i % width === 0) {
             console.log(line);
-            line = repeat(' ', params.left);
+            var line = repeat(' ', params.left);
         }
+        if (typeof(colors[i]) === 'string') {
+            line += pix[colors[i]];
+        } else if (colors[i] instanceof Array) {
+            line += pix[colors[i][0]][colors[i][1]];
+        }
+
     }
     callback && callback();
 }
