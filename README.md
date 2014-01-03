@@ -7,6 +7,10 @@ __Imaging__, let your  terminal outputs more interesting.
 
 ![imaing](https://raw.github.com/switer/live/gh-pages/imaging.png)
 
+
+## Recommended
+See also https://github.com/switer/imagingp module that render PNG images fast and neat.
+
 ## Installing
 
 For [node](http://nodejs.org) with [npm](http://npmjs.org):
