@@ -55,7 +55,7 @@ imaging 1.png -l 20
 imaging 1.png --left 20
 ```
 
-![imaing left](https://raw.github.com/switer/live/gh-pages/images/2.PNG)
+![imaging left](https://raw.github.com/switer/live/gh-pages/images/2.PNG)
 
 custom pixel `char`：
 ```bash
