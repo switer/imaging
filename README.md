@@ -7,10 +7,6 @@ __Imaging__, let your  terminal outputs more interesting.
 
 ![imaing](https://raw.github.com/switer/live/gh-pages/imaging.png)
 
-
-## Recommended
-See also https://github.com/switer/imagingp module that render PNG images fast and neat.
-
 ## Installing
 
 For [node](http://nodejs.org) with [npm](http://npmjs.org):
@@ -25,8 +21,12 @@ __Mac/Linux__
 sudo npm install imaging -g
 ```
 
-## Usage
+__Node.js Module__
+```bash
+npm install imaging --save
+```
 
+## Usage
 
 ### Command line:
 
@@ -43,27 +43,27 @@ __options__
 
 Set image `width`：
 ```bash
-imaging 1.png -w 20
+imaging example.png -w 20
 ## or
-imaging 1.png --width 20
+imaging example.png --width 20
 ```
 
 Set offset `left`：
 ```bash
-imaging 1.png -l 20
+imaging example.png -l 20
 ## or
-imaging 1.png --left 20
+imaging example.png --left 20
 ```
 
 ![imaging left](https://raw.github.com/switer/live/gh-pages/images/2.PNG)
 
 custom pixel `char`：
 ```bash
-imaging 1.png -c @
+imaging example.png -c @
 ## or
-imaging 1.png --char #
+imaging example.png --char #
 ## if error or don't take effect, try wrapping the char with ""
-imaging 1.png -c "*"
+imaging example.png -c "*"
 ```
 
 imaging char names:
@@ -71,10 +71,10 @@ imaging char names:
 * circle "●"
 * rectangle" "█"
 
-`imaging 1.png -c square` equal `imaging 1.png -c ▇`
+`imaging example.png -c square` equal `imaging example.png -c ▇`
 
 
-![imaing left](https://raw.github.com/switer/live/gh-pages/images/1.PNG)
+![imaing char](https://raw.github.com/switer/live/gh-pages/images/1.PNG)
 
 ### Nodejs module
 
