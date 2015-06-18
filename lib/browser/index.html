@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Imaging Image Runner</title>
+</head>
+<body>
+	<script>
+		function run (params) {
+			var img = document.createElement('img')
+			var canvas = document.createElement('canvas')
+			var width = params.width ? parseInt(params.width) : 40
+			var src = decodeURIComponent(params.img)
+			var height
+
+		    img.src = src;
+		    canvas.width = width;
+		    canvas.id = 'canvas'
+		    
+		    document.body.appendChild(img)
+		    img.onload = function() {
+		        img.width = width;
+		        height = img.height;
+		        canvas.height = height;
+
+		        var ctx = canvas.getContext('2d');
+		        ctx.drawImage(img, 0, 0, width, height);
+
+		        document.body.appendChild(canvas);
+		        console.log('canvas:loaded:' + height);
+		    }
+		    img.onerror = function() {
+		        console.log('canvas:loaded:error');
+		    }
+		}
+	</script>
+</body>
+</html>

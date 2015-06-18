@@ -1,0 +1,43 @@
+{
+    "defaultWidth": 40,
+    "defaultLeft": 0,
+    "defaultPix": "▇",
+    "char": {
+        "default": "▇",
+        "square": "▇",
+        "circle": "●",
+        "rectangle": "█"
+    },
+    "colors": {
+        "0,0,0": "black",
+        "0,0,128": "blue",
+        "0,128,0": "green",
+        "0,128,128": "cyan",
+        "128,0,0": "red",
+        "128,0,128": "magenta",
+        "128,128,0": "yellow",
+        "128,128,128": "grey",
+        "192,192,192": "white",
+
+        "0,0,255": ["blue", "grey"],
+        "0,255,0": ["green", "grey"],
+        "0,255,255": ["cyan", "grey"],
+        "255,0,0": ["red", "grey"],
+        "255,0,255": ["magenta", "grey"],
+        "255,255,0": ["yellow", "grey"],
+        "255,255,255": ["white", "grey"],
+
+        "128,128,255": ["blue", "grey"],
+        "128,0,255": ["blue", "grey"],
+        "0,128,255": ["blue", "grey"],
+        "128,255,128": ["green", "grey"],
+        "0,255,128": ["green", "grey"],
+        "128,255,0": ["green", "grey"],
+        "128,255,255": ["cyan", "grey"],
+        "255,128,128": ["red", "grey"],
+        "255,128,0": ["red", "grey"],
+        "255,0,128": ["red", "grey"],
+        "255,128,255": ["magenta", "grey"],
+        "255,255,128": ["yellow", "grey"]
+    }
+}

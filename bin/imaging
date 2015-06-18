@@ -1,43 +1,39 @@
 #!/usr/bin/env node
-var childProcess = require('child_process'),
-    phantomjs = require('phantomjs'),
-    program = require('commander'),
-    colors = require('colors'),
-    config = require('../config.js'),
-    binPath = phantomjs.path;
+'use strict';
+
+var childProcess = require('child_process')
+var phantomjs = require('phantomjs')
+var program = require('commander')
+var colors = require('colors')
+
+var config = require('../config.json')
+var meta = require('../package.json')
+var util = require('../lib/util')
+
+var binPath = phantomjs.path
+var imgURI
 
 program
-    .version('0.0.2-1')
-    .usage('<path> [options]')
+    .version(meta.version)
+    .arguments('<path> [otherPath...]')
     .option('-c, --char <charater>', 'set the char as the pixels of image')
     .option('-l, --left <left>', 'set the left position of image')
-    .option('-w, --width <width>', 'set the width to render the image in terminal');
+    .option('-w, --width <width>', 'set the width to render the image in terminal')
+    .action(function (path, otherPath) {
+      imgURI = path
+    })
+    .parse(process.argv)
 
-program.parse(process.argv);
- // program
- //   .command('node')
- //   .description('run remote setup commands')
- //   .action(function(){
- //     console.log('setup');
- //   });
-var imgUri = process.argv[2];
-
-function fixedImageUrl(url) {
-    if (url.match(/http[s]*\:\/\//)) return url;
-    else if (url.match(/[a-zA-Z]\:/) || url.match(/^\//)) return url;
-    else return process.cwd().replace('/$','') + '/' + url;
-}
-
-if (!imgUri) {
-    console.log('Please give a correct image url !'.red)
+if (!imgURI) {
+    console.error('Please give a correct image URI !'.red)
     return;
 } else {
-    imgUri = fixedImageUrl(imgUri);
+    imgURI = util.absoluteURI(imgURI);
 }
 
 var childArgs = [
-      __dirname + '/../run.js',
-      encodeURIComponent(imgUri)
+      __dirname + '/../lib/runner.js',
+      encodeURIComponent(imgURI)
     ],
     optParams = {};
 
