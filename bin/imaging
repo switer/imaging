@@ -21,7 +21,7 @@ program
     .option('-l, --left <left>', 'set the left position of image')
     .option('-w, --width <width>', 'set the width to render the image in terminal')
     .action(function (path, otherPath) {
-      imgURI = path
+        imgURI = path
     })
     .parse(process.argv)
 
@@ -39,7 +39,7 @@ childProcess.execFile(binPath, [
             left: program.left || config.defaultLeft
         }),
         encodeURIComponent(__dirname),                      // current module work director
-        '../'
+        '../'                                               // the relative path of the root work director
     ], 
     function(err, stdout, stderr) {
         if (err) console.log(err)
