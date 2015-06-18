@@ -5,6 +5,7 @@ var childProcess = require('child_process')
 var phantomjs = require('phantomjs')
 var program = require('commander')
 var colors = require('colors')
+var path = require('path')
 
 var config = require('../config.json')
 var meta = require('../package.json')
@@ -27,39 +28,21 @@ program
 if (!imgURI) {
     console.error('Please give a correct image URI !'.red)
     return;
-} else {
-    imgURI = util.absoluteURI(imgURI);
 }
 
-var childArgs = [
-      __dirname + '/../lib/runner.js',
-      encodeURIComponent(imgURI)
-    ],
-    optParams = {};
-
-if (program.width) {
-  optParams.width = program.width;
-} else {
-  optParams.width = config.defaultWidth;
-}
-
-if (program.char) {
-    optParams.char = program.char;
-} else {
-    optParams.char = config.char.default;
-}
-
-if (program.left) {
-    optParams.left = program.left;
-} else {
-    optParams.left = config.defaultLeft;
-}
-
-childArgs.push(JSON.stringify(optParams));
-childArgs.push(encodeURIComponent(__dirname));
-childArgs.push('../');
-
-childProcess.execFile(binPath, childArgs, function(err, stdout, stderr) {
-  if (err) console.log(err);
-  else console.log(stdout);
+childProcess.execFile(binPath, [
+        path.normalize(__dirname + '/../lib/runner.js'),    // phantom runner relative path
+        encodeURIComponent(util.absoluteURI(imgURI)),       // asolute path of rendered image
+        JSON.stringify({                                    // render options
+            width: program.width || config.defaultWidth,
+            char: program.char || config.char.default,
+            left: program.left || config.defaultLeft
+        }),
+        encodeURIComponent(__dirname),                      // current module work director
+        '../'
+    ], 
+    function(err, stdout, stderr) {
+        if (err) console.log(err)
+        else console.log(stdout)
 })
+

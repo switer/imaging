@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "node test/index"
+    "test": "node ./test/index"
   },
   "repository": {
     "type": "git",
