@@ -34,11 +34,6 @@ npm install imaging --save
 imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
 
-Use in mac/linux sometime need `sudo`:
-```bash
-sudo imaging https://www.google.com.hk/images/srpr/logo11w.png
-```
-
 __options__
 
 Set image `width`：
