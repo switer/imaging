@@ -1,6 +1,6 @@
 {
   "name": "imaging",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Draw image into terminal ,whithout node-canvas.Let your command-line terminal not only have characters",
   "bin": {
     "imaging": "bin/imaging"
