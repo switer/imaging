@@ -67,6 +67,7 @@ imaging example.png -c "*"
 ```
 
 imaging char names:
+* **charmap** specific color with specific char, enjoy it.  
 * square "▇"
 * circle "●"
 * rectangle" "█"
@@ -80,7 +81,7 @@ imaging char names:
 
 ```javascript
 var imaging = require('imaging');
-imaging.draw('1.jpg', function (resp, status) {
+imaging.draw('example.jpg', function (resp, status) {
     /*
       if status == 'success', resp is the image charater string.
       conols.log(resp) to render the image in your terminal
@@ -91,7 +92,7 @@ imaging.draw('1.jpg', function (resp, status) {
 });
 
 // limit the width for rendering
-imaging.draw('1.jpg', { width: 50}, function (resp, status) {
+imaging.draw('example.jpg', { width: 50}, function (resp, status) {
     /*
       if status == 'success', resp is the image charater string.
       conols.log(resp) to render the image in your terminal
@@ -119,7 +120,7 @@ __callback:__ `function (resp, status)`
 
 __Source image:__
 
-![source imh](http://switer.github.io/live/imaging_img.png)
+![source img](http://switer.github.io/live/imaging_img.png)
 
 __Draw into terminal:__
 
