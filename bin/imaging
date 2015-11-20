@@ -14,6 +14,7 @@ var util = require('../lib/util')
 var binPath = phantomjs.path
 var imgURI
 
+
 program
     .version(meta.version)
     .arguments('<path> [otherPath...]')
@@ -25,24 +26,48 @@ program
     })
     .parse(process.argv)
 
-if (!imgURI) {
-    console.error('Please give a correct image URI !'.red)
-    return;
+
+if (!process.stdin.isTTY) {
+    var stdin = ''
+    process.stdin.on('readable', function() {
+        var chunk = this.read()
+        if (chunk !== null) {
+            stdin += chunk
+        }
+    })
+    process.stdin.on('end', function() {
+        imgURI = stdin
+        next()
+    })
+} else {
+    next()
+}
+/**
+ * Next step check img URI and run phantomjs
+ */
+function next() {
+    if (!imgURI) {
+        console.log('Please give a correct image URI !'.red)
+        return;
+    }
+    childProcess.execFile(binPath, [
+            '--web-security=false',
+            '--disk-cache=true',
+            '--ignore-ssl-errors=true',
+            path.normalize(__dirname + '/../lib/runner.js'),    // phantom runner relative path
+            encodeURIComponent(util.absoluteURI(imgURI)),       // asolute path of rendered image
+            JSON.stringify({                                    // render options
+                width: program.width || config.defaultWidth,
+                char: program.char || config.char.default,
+                left: program.left || config.defaultLeft
+            }),
+            encodeURIComponent(__dirname),                      // current module work director
+            '../'                                               // the relative path of the root work director
+        ], 
+        function(err, stdout, stderr) {
+            if (err) console.log(err)
+            else console.log(stdout)
+    })
 }
 
-childProcess.execFile(binPath, [
-        path.normalize(__dirname + '/../lib/runner.js'),    // phantom runner relative path
-        encodeURIComponent(util.absoluteURI(imgURI)),       // asolute path of rendered image
-        JSON.stringify({                                    // render options
-            width: program.width || config.defaultWidth,
-            char: program.char || config.char.default,
-            left: program.left || config.defaultLeft
-        }),
-        encodeURIComponent(__dirname),                      // current module work director
-        '../'                                               // the relative path of the root work director
-    ], 
-    function(err, stdout, stderr) {
-        if (err) console.log(err)
-        else console.log(stdout)
-})
 

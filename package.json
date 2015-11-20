@@ -1,13 +1,13 @@
 {
   "name": "imaging",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Draw image into terminal ,whithout node-canvas.Let your command-line terminal not only have characters",
   "bin": {
     "imaging": "bin/imaging"
   },
   "main": "index.js",
   "scripts": {
-    "test": "node ./test/index"
+    "test": "mocha test/index"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,8 @@
     "phantomjs": "~1.9.17",
     "commander": "~2.8.0",
     "colors": "~0.6.2"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.4"
   }
 }
