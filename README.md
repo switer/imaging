@@ -34,6 +34,13 @@ npm install imaging --save
 imaging https://www.google.com.hk/images/srpr/logo11w.png
 ```
 
+**Using piping:**
+
+```bash
+echo 'https://www.google.com.hk/images/srpr/logo11w.png' | imaging
+```
+
+
 __options__
 
 Set image `width`：
