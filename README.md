@@ -1,5 +1,6 @@
 imaging
 =======
+[travis-ci](https://travis-ci.org/switer/imaging.svg?branch=master)
 
 Drawing image in your terminal whithout node-canvas,and the outputing image is more clear than using `picture-tube`.
 
