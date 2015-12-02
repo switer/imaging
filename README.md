@@ -1,6 +1,7 @@
 imaging
 =======
 [![travis-ci](https://travis-ci.org/switer/imaging.svg?branch=master)](https://travis-ci.org/switer/imaging)
+[![npm version](https://badge.fury.io/js/imaging.svg)](https://badge.fury.io/js/imaging)
 
 Drawing image in your terminal whithout node-canvas,and the outputing image is more clear than using `picture-tube`.
 
