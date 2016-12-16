@@ -1,6 +1,6 @@
 {
   "name": "imaging",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Draw image into terminal ,whithout node-canvas.Let your command-line terminal not only have characters",
   "bin": {
     "imaging": "bin/imaging"
@@ -24,9 +24,9 @@
     "url": "https://github.com/switer/imaging/issues"
   },
   "dependencies": {
-    "phantomjs": "~1.9.17",
+    "colors": "~0.6.2",
     "commander": "~2.8.0",
-    "colors": "~0.6.2"
+    "phantomjs": "^2.1.7"
   },
   "devDependencies": {
     "mocha": "^2.3.4"

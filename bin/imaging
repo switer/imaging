@@ -50,9 +50,10 @@ function next() {
         console.log('Please give a correct image URI !'.red)
         return;
     }
-    childProcess.execFile(binPath, [
+    childProcess.exec(binPath, [
             '--web-security=false',
             '--disk-cache=true',
+            '--ssl-protocol=any',
             '--ignore-ssl-errors=true',
             path.normalize(__dirname + '/../lib/runner.js'),    // phantom runner relative path
             encodeURIComponent(util.absoluteURI(imgURI)),       // asolute path of rendered image

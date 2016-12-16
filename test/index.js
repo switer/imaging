@@ -14,8 +14,8 @@ describe('#API Methods', function () {
         });
     })
     it('Load remote resource', function (done) {
-        this.timeout(5000)
-        imaging.draw('https://www.google.com.hk/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png', {width: 40, left: 10}, function (resp, status) {
+        this.timeout(8000, 'Load resource timeout.')
+        imaging.draw('http://phantomjs.org/img/phantomjs-logo.png', {width: 60, left: 10}, function (resp, status) {
             assert.equal(status, 'success')
             console.log(resp)
             done()
