@@ -14,8 +14,8 @@ describe('#API Methods', function () {
         });
     })
     it('Load remote resource', function (done) {
-        this.timeout(8000, 'Load resource timeout.')
-        imaging.draw('http://phantomjs.org/img/phantomjs-logo.png', {width: 60, left: 10}, function (resp, status) {
+        this.timeout(10000, 'Load resource timeout.')
+        imaging.draw('https://raw.githubusercontent.com/isaacs/npm/master/html/npm-256-square.png', {width: 40, left: 10}, function (resp, status) {
             assert.equal(status, 'success')
             console.log(resp)
             done()

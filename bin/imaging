@@ -6,7 +6,7 @@ var phantomjs = require('phantomjs')
 var program = require('commander')
 var colors = require('colors')
 var path = require('path')
-
+var imaging = require('../lib/imaging')
 var config = require('../config.json')
 var meta = require('../package.json')
 var util = require('../lib/util')
@@ -50,24 +50,8 @@ function next() {
         console.log('Please give a correct image URI !'.red)
         return;
     }
-    childProcess.exec(binPath, [
-            '--web-security=false',
-            '--disk-cache=true',
-            '--ssl-protocol=any',
-            '--ignore-ssl-errors=true',
-            path.normalize(__dirname + '/../lib/runner.js'),    // phantom runner relative path
-            encodeURIComponent(util.absoluteURI(imgURI)),       // asolute path of rendered image
-            JSON.stringify({                                    // render options
-                width: program.width || config.defaultWidth,
-                char: program.char || config.char.default,
-                left: program.left || config.defaultLeft
-            }),
-            encodeURIComponent(__dirname),                      // current module work director
-            '../'                                               // the relative path of the root work director
-        ], 
-        function(err, stdout, stderr) {
-            if (err) console.log(err)
-            else console.log(stdout)
+    imaging.draw(imgURI, program, function (res, status) {
+        console.log(res)
     })
 }
 
